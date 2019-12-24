@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/HolderSource.iml" filepath="$PROJECT_DIR$/.idea/HolderSource.iml" />
+      <module fileurl="file://$PROJECT_DIR$/framework-sdk/framework-sdk.iml" filepath="$PROJECT_DIR$/framework-sdk/framework-sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frameworks-slf4j-starter/frameworks-slf4j-starter.iml" filepath="$PROJECT_DIR$/frameworks-slf4j-starter/frameworks-slf4j-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/holder-saas-store-dto/holder-saas-store-dto.iml" filepath="$PROJECT_DIR$/holder-saas-store-dto/holder-saas-store-dto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/holder-saas-store-organization/holder-saas-store-organization.iml" filepath="$PROJECT_DIR$/holder-saas-store-organization/holder-saas-store-organization.iml" />
+    </modules>
+  </component>
+</project>
