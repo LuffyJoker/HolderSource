@@ -1,4 +1,4 @@
-package com.holderzone.framework.exception.unchecked;
+package com.holderzone.framework.exception;
 
 /**
  * 业务异常

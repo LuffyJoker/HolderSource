@@ -3,14 +3,24 @@ package com.holderzone.saas.store.organization.service.impl;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.holderzone.framework.exception.unchecked.BusinessException;
+import com.holderzone.framework.exception.BusinessException;
+import com.holderzone.framework.util.JacksonUtils;
+import com.holderzone.frameworkrocketmqstarter.common.DefaultRocketMqProducer;
+import com.holderzone.holdersaasstoredto.dto.item.ItemSingleDTO;
 import com.holderzone.holdersaasstoredto.dto.organization.BrandDTO;
 import com.holderzone.holdersaasstoredto.dto.organization.QueryBrandDTO;
 import com.holderzone.saas.store.organization.domain.BrandDO;
+import com.holderzone.saas.store.organization.domain.StoreBrandDO;
 import com.holderzone.saas.store.organization.mapper.BrandMapper;
+import com.holderzone.saas.store.organization.mapper.StoreBrandMapper;
+import com.holderzone.saas.store.organization.mapstruct.BrandMapstruct;
 import com.holderzone.saas.store.organization.service.BrandService;
+import com.holderzone.saas.store.organization.service.DistributedIdService;
+import com.holderzone.saas.store.organization.service.rpc.ItemClient;
+import com.holderzone.sdk.util.BatchIdGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
@@ -27,34 +37,33 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, BrandDO> implemen
 
     private final BrandMapper brandMapper;
 
-//    private final StoreBrandMapper storeBrandMapper;
-//
-//    private final BrandMapstruct brandMapstruct;
-//
-//    private final RedisTemplate redisTemplate;
-//
-//    private final ItemClient itemClient;
-//
-//    private final DefaultRocketMqProducer defaultRocketMqProducer;
-//
-//    private final DistributedIdService distributedIdService;
+    private final StoreBrandMapper storeBrandMapper;
+
+    private final BrandMapstruct brandMapstruct;
+
+    private final RedisTemplate redisTemplate;
+
+    private final ItemClient itemClient;
+
+    private final DefaultRocketMqProducer defaultRocketMqProducer;
+
+    private final DistributedIdService distributedIdService;
 
     @Autowired
-    public BrandServiceImpl(BrandMapper brandMapper
-//                            StoreBrandMapper storeBrandMapper,
-//                            BrandMapstruct brandMapstruct,
-//                            RedisTemplate redisTemplate,
-//                            ItemClient itemClient,
-//                            DefaultRocketMqProducer defaultRocketMqProducer,
-//                            DistributedIdService distributedIdService
-    ) {
+    public BrandServiceImpl(BrandMapper brandMapper,
+                            StoreBrandMapper storeBrandMapper,
+                            BrandMapstruct brandMapstruct,
+                            RedisTemplate redisTemplate,
+                            ItemClient itemClient,
+                            DefaultRocketMqProducer defaultRocketMqProducer,
+                            DistributedIdService distributedIdService) {
         this.brandMapper = brandMapper;
-//        this.storeBrandMapper = storeBrandMapper;
-//        this.brandMapstruct = brandMapstruct;
-//        this.redisTemplate = redisTemplate;
-//        this.itemClient = itemClient;
-//        this.defaultRocketMqProducer = defaultRocketMqProducer;
-//        this.distributedIdService = distributedIdService;
+        this.storeBrandMapper = storeBrandMapper;
+        this.brandMapstruct = brandMapstruct;
+        this.redisTemplate = redisTemplate;
+        this.itemClient = itemClient;
+        this.defaultRocketMqProducer = defaultRocketMqProducer;
+        this.distributedIdService = distributedIdService;
     }
 
     @Override
@@ -62,7 +71,6 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, BrandDO> implemen
         if (this.validateBrandName(brandDTO.getName())) {
             throw new BusinessException("品牌名称重复");
         }
-
         String guid;
         try {
             guid = String.valueOf(BatchIdGenerator.getGuid(redisTemplate, "brand"));
