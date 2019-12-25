@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/HolderSource.iml" filepath="$PROJECT_DIR$/.idea/HolderSource.iml" />
+      <module fileurl="file://$PROJECT_DIR$/framework-feign-starter/framework-feign-starter.iml" filepath="$PROJECT_DIR$/framework-feign-starter/framework-feign-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework-rocketmq-starter/framework-rocketmq-starter.iml" filepath="$PROJECT_DIR$/framework-rocketmq-starter/framework-rocketmq-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework-sdk/framework-sdk.iml" filepath="$PROJECT_DIR$/framework-sdk/framework-sdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework-sdk-starter/framework-sdk-starter.iml" filepath="$PROJECT_DIR$/framework-sdk-starter/framework-sdk-starter.iml" />

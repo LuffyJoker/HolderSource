@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.holderzone.framework.feign.starter.aspect.SwitchContextAspect,\
+  com.holderzone.framework.feign.starter.autoconfigure.ErrorDecoderConfig,\
+  com.holderzone.framework.feign.starter.autoconfigure.WebContextConfig,\
+  com.holderzone.framework.feign.starter.interceptor.FeignContextInterceptor

@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="framework-feign-starter" />
         <module name="framework-sdk" />
         <module name="framework-rocketmq-starter" />
         <module name="holder-saas-store-organization" />
@@ -15,6 +16,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="framework-feign-starter" target="1.8" />
       <module name="framework-rocketmq-starter" target="1.8" />
       <module name="framework-sdk" target="1.8" />
       <module name="framework-sdk-starter" target="1.8" />
@@ -25,6 +27,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="framework-feign-starter" options="-parameters" />
       <module name="framework-rocketmq-starter" options="-parameters" />
       <module name="framework-sdk" options="-parameters" />
       <module name="framework-sdk-starter" options="-parameters" />

@@ -1,5 +1,9 @@
 package com.holderzone.framework.feign.starter.autoconfigure;
 
+import com.holderzone.framework.feign.starter.decoder.ErrorDecoderWithHystrix;
+import com.holderzone.framework.feign.starter.decoder.ErrorDecoderWithoutHystrix;
+import com.netflix.hystrix.exception.HystrixBadRequestException;
+import feign.codec.ErrorDecoder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

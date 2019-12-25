@@ -1,5 +1,7 @@
 package com.holderzone.framework.feign.starter.core;
 
+import org.springframework.http.HttpStatus;
+
 import java.util.Optional;
 
 public final class GenericException extends RuntimeException {

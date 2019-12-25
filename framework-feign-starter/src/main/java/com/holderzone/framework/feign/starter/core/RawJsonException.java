@@ -1,5 +1,7 @@
 package com.holderzone.framework.feign.starter.core;
 
+import org.springframework.http.HttpStatus;
+
 public final class RawJsonException extends RuntimeException {
 
     private int status;
