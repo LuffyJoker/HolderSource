@@ -12,6 +12,8 @@ public final class GenericException extends RuntimeException {
 
     private GenericException(String message) {
         super(Optional.ofNullable(message).orElse("默认错误"));
+        Optional<Integer> age = Optional.of(20);
+        Optional<Integer> oldAge = age.filter(a -> a > 18);
         this.status = HttpStatus.CONFLICT.value();
     }
 

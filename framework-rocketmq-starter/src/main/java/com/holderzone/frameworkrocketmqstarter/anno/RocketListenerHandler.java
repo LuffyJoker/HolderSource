@@ -1,5 +1,9 @@
 package com.holderzone.frameworkrocketmqstarter.anno;
 
+import com.holderzone.frameworkrocketmqstarter.constants.ConsumeMode;
+import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
+import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

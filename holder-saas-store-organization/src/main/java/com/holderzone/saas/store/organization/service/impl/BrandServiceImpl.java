@@ -98,8 +98,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, BrandDO> implemen
             return null;
         }
 
-        BrandDTO brandDTO1 = brandMapstruct.brandDO2DTO(this.getOne(
-                new LambdaQueryWrapper<BrandDO>().eq(BrandDO::getGuid, guid)));
+        BrandDTO brandDTO1 = brandMapstruct.brandDO2DTO(this.getOne(new LambdaQueryWrapper<BrandDO>().eq(BrandDO::getGuid, guid)));
         // 给下游：品牌创建初始化菜品数据等
         Message message = new Message(MqConstant.DOWNSTREAM_BRAND_CREATE_TOPIC
                 , MqConstant.DOWNSTREAM_BRAND_CREATE_TAG, JacksonUtils.toJsonByte(brandDTO1));

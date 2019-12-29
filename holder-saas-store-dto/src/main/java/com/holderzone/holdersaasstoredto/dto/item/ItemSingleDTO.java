@@ -6,4 +6,5 @@ package com.holderzone.holdersaasstoredto.dto.item;
  * desc：
  */
 public class ItemSingleDTO {
+
 }

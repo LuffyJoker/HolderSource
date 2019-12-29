@@ -7,7 +7,10 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotNull;
@@ -15,9 +18,14 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @ApiModel("品牌DTO")
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Accessors(chain = true)
 public class BrandDTO implements Serializable {
+
+    private static final long serialVersionUID = 4302316796765220094L;
 
     @NotNull(message = "更新时品牌guid不能为空", groups = Update.class)
     @ApiModelProperty(value = "品牌guid（更新时必传）")
@@ -59,6 +67,9 @@ public class BrandDTO implements Serializable {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime gmtModified;
+
+    @ApiModelProperty(value = "企业经营类型")
+    private String mchntTypeCode;
 
     public interface Update {
     }

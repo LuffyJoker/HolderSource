@@ -21,7 +21,7 @@ public class BatchIdGenerator {
 
     public static List<Long> batchGetGuids(RedisTemplate redisTemplate, String tab, long count) {
         if (count <= 10240L && count > 0L) {
-            List<Long> guids = new ArrayList();
+            ArrayList guids = new ArrayList();
             long luaNum = 1L;
             if (count > 1024L) {
                 if (count % 1024L != 0L) {
