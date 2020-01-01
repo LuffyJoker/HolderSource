@@ -1,6 +1,6 @@
 package com.holderzone.framework.feign.starter.exception;
 
-import com.holderzone.framework.exception.BusinessException;
+import com.holderzone.framework.exception.runtime.BusinessException;
 import com.holderzone.framework.exception.NotFoundException;
 import com.holderzone.framework.exception.ParamException;
 import com.holderzone.framework.feign.starter.core.*;

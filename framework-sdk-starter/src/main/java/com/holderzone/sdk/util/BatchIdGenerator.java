@@ -1,10 +1,13 @@
 package com.holderzone.sdk.util;
 
+import com.google.common.collect.Lists;
 import com.holderzone.framework.exception.ParamException;
+import com.holderzone.framework.exception.runtime.ParameterException;
 import org.springframework.dao.NonTransientDataAccessException;
+import org.springframework.data.redis.connection.ReturnType;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
-import sun.reflect.generics.tree.ReturnType;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,7 +24,7 @@ public class BatchIdGenerator {
 
     public static List<Long> batchGetGuids(RedisTemplate redisTemplate, String tab, long count) {
         if (count <= 10240L && count > 0L) {
-            ArrayList guids = new ArrayList();
+            List<Long> guids = new ArrayList();
             long luaNum = 1L;
             if (count > 1024L) {
                 if (count % 1024L != 0L) {
@@ -46,7 +49,7 @@ public class BatchIdGenerator {
 
             return guids;
         } else {
-            throw new ParamException("批量guid生成区间为1-10240");
+            throw new ParameterException("批量guid生成区间为1-10240");
         }
     }
 
@@ -58,7 +61,7 @@ public class BatchIdGenerator {
 
         List result;
         try {
-            result = (List) redisTemplate.execute((redisConnection) -> {
+            result = (List) redisTemplate.execute((RedisCallback) (redisConnection) -> {
                 return (List) redisConnection.scriptingCommands().evalSha(sha1, ReturnType.fromJavaType(Object.class), 2, new byte[][]{tab.getBytes(), String.valueOf(count).getBytes()});
             });
         } catch (Exception var9) {
@@ -66,7 +69,7 @@ public class BatchIdGenerator {
                 throw (RuntimeException) var9;
             }
 
-            result = (List) redisTemplate.execute((redisConnection) -> {
+            result = (List) redisTemplate.execute((RedisCallback) (redisConnection) -> {
                 return (List) redisConnection.scriptingCommands().eval(lua.getBytes(), ReturnType.fromJavaType(Object.class), 2, new byte[][]{tab.getBytes(), String.valueOf(count).getBytes()});
             });
         }
@@ -164,8 +167,7 @@ public class BatchIdGenerator {
 
             System.out.println(guids);
         } else {
-            throw new ParamException("批量guid生成区间为1-10240");
+            throw new ParameterException("批量guid生成区间为1-10240");
         }
     }
 }
-

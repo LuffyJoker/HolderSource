@@ -1,4 +1,4 @@
-package com.holderzone.framework.exception;
+package com.holderzone.framework.exception.runtime;
 
 /**
  * @author Mr.Q

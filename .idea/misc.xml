@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/framework-sdk-starter/pom.xml" />
         <option value="$PROJECT_DIR$/framework-rocketmq-starter/pom.xml" />
         <option value="$PROJECT_DIR$/framework-feign-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/holder-saas-store-item/pom.xml" />
       </list>
     </option>
   </component>

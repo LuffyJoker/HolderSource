@@ -1,6 +1,6 @@
 package com.holderzone.framework.util;
 
-import com.holderzone.framework.exception.JsonOperationException;
+import com.holderzone.framework.exception.runtime.JsonOperationException;
 import com.sun.xml.internal.ws.developer.SerializationFeature;
 import org.springframework.util.StringUtils;
 

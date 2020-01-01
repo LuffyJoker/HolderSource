@@ -1,6 +1,6 @@
 package com.holderzone.saas.store.organization.service.impl;
 
-import com.holderzone.framework.exception.BusinessException;
+import com.holderzone.framework.exception.runtime.BusinessException;
 import com.holderzone.saas.store.organization.service.DistributedIdService;
 import com.holderzone.sdk.util.BatchIdGenerator;
 import lombok.extern.slf4j.Slf4j;

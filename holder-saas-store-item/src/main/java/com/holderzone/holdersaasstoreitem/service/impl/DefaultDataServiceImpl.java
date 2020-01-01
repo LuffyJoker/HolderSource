@@ -1,6 +1,6 @@
 package com.holderzone.holdersaasstoreitem.service.impl;
 
-import com.holderzone.framework.exception.BusinessException;
+import com.holderzone.framework.exception.runtime.BusinessException;
 import com.holderzone.holdersaasstoredto.dto.item.ItemSingleDTO;
 import com.holderzone.holdersaasstoreitem.entity.domain.AttrDO;
 import com.holderzone.holdersaasstoreitem.entity.domain.AttrGroupDO;

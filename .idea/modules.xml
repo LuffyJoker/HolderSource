@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/framework-sdk-starter/framework-sdk-starter.iml" filepath="$PROJECT_DIR$/framework-sdk-starter/framework-sdk-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/frameworks-slf4j-starter/frameworks-slf4j-starter.iml" filepath="$PROJECT_DIR$/frameworks-slf4j-starter/frameworks-slf4j-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/holder-saas-store-dto/holder-saas-store-dto.iml" filepath="$PROJECT_DIR$/holder-saas-store-dto/holder-saas-store-dto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/holder-saas-store-item/holder-saas-store-item.iml" filepath="$PROJECT_DIR$/holder-saas-store-item/holder-saas-store-item.iml" />
       <module fileurl="file://$PROJECT_DIR$/holder-saas-store-organization/holder-saas-store-organization.iml" filepath="$PROJECT_DIR$/holder-saas-store-organization/holder-saas-store-organization.iml" />
     </modules>
   </component>

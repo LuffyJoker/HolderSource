@@ -7,12 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="framework-feign-starter" />
-        <module name="framework-sdk" />
         <module name="framework-rocketmq-starter" />
-        <module name="holder-saas-store-organization" />
+        <module name="framework-sdk" />
         <module name="framework-sdk-starter" />
         <module name="frameworks-slf4j-starter" />
         <module name="holder-saas-store-dto" />
+        <module name="holder-saas-store-item" />
+        <module name="holder-saas-store-organization" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -22,6 +23,7 @@
       <module name="framework-sdk-starter" target="1.8" />
       <module name="frameworks-slf4j-starter" target="1.8" />
       <module name="holder-saas-store-dto" target="1.8" />
+      <module name="holder-saas-store-item" target="1.8" />
       <module name="holder-saas-store-organization" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -33,6 +35,7 @@
       <module name="framework-sdk-starter" options="-parameters" />
       <module name="frameworks-slf4j-starter" options="-parameters" />
       <module name="holder-saas-store-dto" options="-parameters" />
+      <module name="holder-saas-store-item" options="-parameters" />
       <module name="holder-saas-store-organization" options="-parameters" />
     </option>
   </component>

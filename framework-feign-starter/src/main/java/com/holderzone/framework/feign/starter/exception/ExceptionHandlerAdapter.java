@@ -1,6 +1,6 @@
 package com.holderzone.framework.feign.starter.exception;
 
-import com.holderzone.framework.exception.BusinessException;
+import com.holderzone.framework.exception.runtime.BusinessException;
 import com.holderzone.framework.feign.starter.core.GenericException;
 import com.holderzone.framework.feign.starter.core.OpenFeignException;
 import com.holderzone.framework.feign.starter.core.RawJsonException;

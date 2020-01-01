@@ -1,4 +1,4 @@
-package com.holderzone.framework.exception;
+package com.holderzone.framework.exception.runtime;
 
 public class BeanOpreationException extends RuntimeException {
     private String message;

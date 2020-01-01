@@ -3,7 +3,7 @@ package com.holderzone.saas.store.organization.service.impl;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.holderzone.framework.exception.BusinessException;
+import com.holderzone.framework.exception.runtime.BusinessException;
 import com.holderzone.framework.feign.starter.util.UserContextUtils;
 import com.holderzone.framework.util.DateTimeUtils;
 import com.holderzone.framework.util.JacksonUtils;
