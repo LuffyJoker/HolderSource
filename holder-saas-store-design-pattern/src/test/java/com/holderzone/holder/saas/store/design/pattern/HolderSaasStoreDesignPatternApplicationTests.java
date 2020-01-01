@@ -1,0 +1,13 @@
+package com.holderzone.holder.saas.store.design.pattern;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class HolderSaasStoreDesignPatternApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}

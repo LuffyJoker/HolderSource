@@ -1,7 +1,10 @@
 package com.holderzone.framework.util;
 
-import com.holderzone.framework.exception.runtime.JsonOperationException;
-import com.sun.xml.internal.ws.developer.SerializationFeature;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.util.StringUtils;
 
 import java.io.ByteArrayOutputStream;
@@ -81,7 +84,7 @@ public class JacksonUtils {
                 return null;
             } else {
                 obj = objectMapper.readValue(json, clazz);
-                return obj;
+                return (T) obj;
             }
         } catch (Exception var4) {
             throw new JsonOperationException("json字符串转化错误！！");
@@ -94,7 +97,7 @@ public class JacksonUtils {
         try {
             if (bytes != null && bytes.length != 0) {
                 obj = objectMapper.readValue(bytes, clazz);
-                return obj;
+                return (T) obj;
             } else {
                 return null;
             }
@@ -159,7 +162,7 @@ public class JacksonUtils {
 
     static {
         objectMapper = new ObjectMapper();
-        objectMapper.setSerializationInclusion(Include.NON_NULL);
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
         objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);

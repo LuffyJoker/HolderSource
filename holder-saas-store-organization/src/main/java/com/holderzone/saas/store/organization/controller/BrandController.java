@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(description = "品牌相关接口")
+@Api(value = "品牌相关接口")
 @RestController
 @RequestMapping("/brand")
 public class BrandController {
@@ -29,6 +29,7 @@ public class BrandController {
     public BrandDTO createBrand(@RequestBody @Validated BrandDTO brandDTO) {
         return brandService.createBrand(brandDTO);
     }
+
     /**
      * 更新品牌
      *

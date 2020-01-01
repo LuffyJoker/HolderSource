@@ -191,8 +191,11 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, BrandDO> implemen
         itemClient.addDefaultAttr(itemSingleDTO);
 
         log.info("send  msg to Mq ----------------------------- 创建默认品牌{}", JacksonUtils.writeValueAsString(brandDO));
-        Message message = new Message(MemberSyncConstant.MEMBER_BRAND_SYNC_TOPIC,
-                MemberSyncConstant.MEMBER_BRAND_MODIFY_TAG, JacksonUtils.toJsonByte(brandDTO));
+        Message message = new Message(
+                MemberSyncConstant.MEMBER_BRAND_SYNC_TOPIC,
+                MemberSyncConstant.MEMBER_BRAND_MODIFY_TAG,
+                JacksonUtils.toJsonByte(brandDTO)
+        );
         message.getProperties().put(MemberSyncConstant.MEMBER_SYNC_PROPERTY, UserContextUtils.getJsonStr());
         defaultRocketMqProducer.sendMessage(message);
 
@@ -203,9 +206,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, BrandDO> implemen
 
     @Override
     public String queryDefaultBrand() {
-        List<BrandDO> list = list(new LambdaQueryWrapper<BrandDO>()
-                .orderByAsc(BrandDO::getGmtCreate)
-                .last("limit 1"));
+        List<BrandDO> list = list(new LambdaQueryWrapper<BrandDO>().orderByAsc(BrandDO::getGmtCreate).last("limit 1"));
         if (CollectionUtils.isEmpty(list)) {
             return createDefaultBrand().getGuid();
         }
