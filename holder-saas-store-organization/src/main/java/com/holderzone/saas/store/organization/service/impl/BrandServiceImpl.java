@@ -89,22 +89,15 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, BrandDO> implemen
                 .setGmtCreate(DateTimeUtils.now())
                 .setGmtModified(DateTimeUtils.now());
 
-        // 初始化品牌下的商品信息
-        ItemSingleDTO itemSingleDTO = new ItemSingleDTO();
-        itemSingleDTO.setData(guid);
-        //itemClient.addDefaultAttr(itemSingleDTO);
-
         if (!this.save(brandDO)) {
             return null;
         }
 
-        BrandDTO brandDTO1 = brandMapstruct.brandDO2DTO(this.getOne(new LambdaQueryWrapper<BrandDO>().eq(BrandDO::getGuid, guid)));
-        // 给下游：品牌创建初始化菜品数据等
-        Message message = new Message(MqConstant.DOWNSTREAM_BRAND_CREATE_TOPIC
-                , MqConstant.DOWNSTREAM_BRAND_CREATE_TAG, JacksonUtils.toJsonByte(brandDTO1));
-        message.getProperties().put(MqConstant.DOWNSTREAM_CONTEXT, UserContextUtils.getJsonStr());
-        defaultRocketMqProducer.sendMessage(message);
-        return brandDTO1;
+        BrandDTO brandDTOTemp = brandMapstruct.brandDO2DTO(brandDO);
+
+        sendInitItemMessage(brandDTOTemp);
+
+        return brandDTOTemp;
 
     }
 
@@ -114,26 +107,20 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, BrandDO> implemen
                 .setModifiedUserGuid(UserContextUtils.getUserGuid())
                 .setGmtModified(DateTimeUtils.now());
 
-        BrandDO originalDO = this.getOne(new LambdaQueryWrapper<BrandDO>().eq(BrandDO::getGuid, brandDO.getGuid()));
+        BrandDO originalDOInSql = getOne(new LambdaQueryWrapper<BrandDO>().eq(BrandDO::getGuid, brandDO.getGuid()));
         // 若更新了品牌名称字段，则验证同企业下是否重复
-        if (!originalDO.getName().equals(brandDO.getName()) && this.validateBrandName(brandDO.getName())) {
+        if (!originalDOInSql.getName().equals(brandDO.getName()) && validateBrandName(brandDO.getName())) {
             throw new BusinessException("品牌名称重复");
         }
-        if (!this.update(brandDO, new LambdaQueryWrapper<BrandDO>().eq(BrandDO::getGuid, brandDO.getGuid()))) {
-            return false;
-        }
-        return true;
+        return update(brandDO, new LambdaQueryWrapper<BrandDO>().eq(BrandDO::getGuid, brandDO.getGuid()));
     }
 
     @Override
     public boolean deleteBrand(String brandGuid) {
-        if (this.queryExistStoreAccount(brandGuid)) {
+        if (queryExistStoreAccount(brandGuid)) {
             throw new BusinessException("该品牌下已存在门店，请清理后删除");
         }
-        if (!this.remove(new LambdaQueryWrapper<BrandDO>().eq(BrandDO::getGuid, brandGuid))) {
-            return false;
-        }
-        return true;
+        return remove(new LambdaQueryWrapper<BrandDO>().eq(BrandDO::getGuid, brandGuid));
     }
 
     @Override
@@ -160,7 +147,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, BrandDO> implemen
     @Override
     public List<BrandDTO> queryAllList(QueryBrandDTO queryBrandDTO) {
         if (!ObjectUtils.isEmpty(queryBrandDTO) && StringUtils.hasText(queryBrandDTO.getBrandName())) {
-            return brandMapstruct.brandDOList2DTOList(this.list(new LambdaQueryWrapper<BrandDO>()
+            return brandMapstruct.brandDOList2DTOList(list(new LambdaQueryWrapper<BrandDO>()
                     .like(BrandDO::getName, queryBrandDTO.getBrandName())));
         }
         return brandMapstruct.brandDOList2DTOList(this.list(null));
@@ -208,11 +195,9 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, BrandDO> implemen
                 MemberSyncConstant.MEMBER_BRAND_MODIFY_TAG, JacksonUtils.toJsonByte(brandDTO));
         message.getProperties().put(MemberSyncConstant.MEMBER_SYNC_PROPERTY, UserContextUtils.getJsonStr());
         defaultRocketMqProducer.sendMessage(message);
-        // 给下游：品牌创建初始化菜品数据等
-        Message message1 = new Message(MqConstant.DOWNSTREAM_BRAND_CREATE_TOPIC
-                , MqConstant.DOWNSTREAM_BRAND_CREATE_TAG, JacksonUtils.toJsonByte(brandDTO));
-        message1.getProperties().put(MqConstant.DOWNSTREAM_CONTEXT, UserContextUtils.getJsonStr());
-        defaultRocketMqProducer.sendMessage(message1);
+
+        sendInitItemMessage(brandDTO);
+
         return brandDTO;
     }
 
@@ -237,5 +222,18 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, BrandDO> implemen
         Wrapper<BrandDO> wrapper = new LambdaQueryWrapper<BrandDO>().eq(BrandDO::getName, brandName);
         return brandMapper.selectCount(wrapper) > 0;
     }
+
+    /**
+     * 给 item 发送消息，初始化默认商品、属性、属性组
+     *
+     * @param brandDTO
+     */
+    private void sendInitItemMessage(BrandDTO brandDTO) {
+        Message message1 = new Message(MqConstant.DOWNSTREAM_BRAND_CREATE_TOPIC
+                , MqConstant.DOWNSTREAM_BRAND_CREATE_TAG, JacksonUtils.toJsonByte(brandDTO));
+        message1.getProperties().put(MqConstant.DOWNSTREAM_CONTEXT, UserContextUtils.getJsonStr());
+        defaultRocketMqProducer.sendMessage(message1);
+    }
+
 }
 

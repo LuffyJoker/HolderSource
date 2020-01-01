@@ -37,7 +37,7 @@ public class BatchIdGenerator {
             if (count <= 1024L) {
                 guids.addAll(getGuids(redisTemplate, tab, count));
             } else {
-                for (int i = 0; (long) i < luaNum; ++i) {
+                for(int i = 0; (long)i < luaNum; ++i) {
                     if (count - 1024L > 0L) {
                         guids.addAll(getGuids(redisTemplate, tab, 1024L));
                         count -= 1024L;
@@ -61,24 +61,24 @@ public class BatchIdGenerator {
 
         List result;
         try {
-            result = (List) redisTemplate.execute((RedisCallback) (redisConnection) -> {
-                return (List) redisConnection.scriptingCommands().evalSha(sha1, ReturnType.fromJavaType(Object.class), 2, new byte[][]{tab.getBytes(), String.valueOf(count).getBytes()});
+            result = (List)redisTemplate.execute((RedisCallback) (redisConnection) -> {
+                return (List)redisConnection.scriptingCommands().evalSha(sha1, ReturnType.fromJavaType(Object.class), 2, new byte[][]{tab.getBytes(), String.valueOf(count).getBytes()});
             });
         } catch (Exception var9) {
             if (!exceptionContainsNoScriptError(var9)) {
-                throw (RuntimeException) var9;
+                throw (RuntimeException)var9;
             }
 
-            result = (List) redisTemplate.execute((RedisCallback) (redisConnection) -> {
-                return (List) redisConnection.scriptingCommands().eval(lua.getBytes(), ReturnType.fromJavaType(Object.class), 2, new byte[][]{tab.getBytes(), String.valueOf(count).getBytes()});
+            result = (List)redisTemplate.execute((RedisCallback) (redisConnection) -> {
+                return (List)redisConnection.scriptingCommands().eval(lua.getBytes(), ReturnType.fromJavaType(Object.class), 2, new byte[][]{tab.getBytes(), String.valueOf(count).getBytes()});
             });
         }
 
-        return buildGuids((Long) result.get(0), (Long) result.get(1), (Long) result.get(2), count);
+        return buildGuids((Long)result.get(0), (Long)result.get(1), (Long)result.get(2), count);
     }
 
     public static long getGuid(RedisTemplate redisTemplate, String tab) throws IOException {
-        return (Long) batchGetGuids(redisTemplate, tab, 1L).get(0);
+        return (Long)batchGetGuids(redisTemplate, tab, 1L).get(0);
     }
 
     public static List<Long> parseGuid(long id) {
@@ -97,8 +97,8 @@ public class BatchIdGenerator {
         long miliSecond = second * 1000L + microSecond / 1000L;
         long l = (miliSecond << 22) + seq;
 
-        for (int i = 0; (long) i < count; ++i) {
-            guids.add(l - (long) i);
+        for(int i = 0; (long)i < count; ++i) {
+            guids.add(l - (long)i);
         }
 
         return guids;
@@ -108,8 +108,8 @@ public class BatchIdGenerator {
         if (!(e instanceof NonTransientDataAccessException)) {
             return false;
         } else {
-            for (Object current = e; current != null; current = ((Throwable) current).getCause()) {
-                String exMessage = ((Throwable) current).getMessage();
+            for(Object current = e; current != null; current = ((Throwable)current).getCause()) {
+                String exMessage = ((Throwable)current).getMessage();
                 if (exMessage != null && exMessage.contains("NOSCRIPT")) {
                     return true;
                 }
@@ -135,20 +135,20 @@ public class BatchIdGenerator {
             if (count <= 1024L) {
                 List<Long> guid = new ArrayList();
 
-                for (int j = 0; (long) j < count; ++j) {
-                    guid.add((long) j);
+                for(int j = 0; (long)j < count; ++j) {
+                    guid.add((long)j);
                 }
 
                 guids.addAll(guid);
             } else {
-                for (int i = 0; (long) i < luaNum; ++i) {
+                for(int i = 0; (long)i < luaNum; ++i) {
                     int j;
                     ArrayList guid;
                     if (count - 1024L > 0L) {
                         guid = new ArrayList();
 
-                        for (j = 0; j < 1024; ++j) {
-                            guid.add((long) j);
+                        for(j = 0; j < 1024; ++j) {
+                            guid.add((long)j);
                         }
 
                         guids.addAll(guid);
@@ -156,8 +156,8 @@ public class BatchIdGenerator {
                     } else {
                         guid = new ArrayList();
 
-                        for (j = 0; (long) j < count; ++j) {
-                            guid.add((long) j);
+                        for(j = 0; (long)j < count; ++j) {
+                            guid.add((long)j);
                         }
 
                         guids.addAll(guid);
