@@ -8,6 +8,7 @@
     <file url="file://$PROJECT_DIR$/frameworks-slf4j-starter" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/holder-saas-store-dto" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/holder-saas-store-item" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/holder-saas-store-kds" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/holder-saas-store-organization" charset="UTF-8" />
   </component>
 </project>

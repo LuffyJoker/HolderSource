@@ -13,6 +13,7 @@
         <module name="frameworks-slf4j-starter" />
         <module name="holder-saas-store-dto" />
         <module name="holder-saas-store-item" />
+        <module name="holder-saas-store-kds" />
         <module name="holder-saas-store-organization" />
       </profile>
     </annotationProcessing>
@@ -24,6 +25,7 @@
       <module name="frameworks-slf4j-starter" target="1.8" />
       <module name="holder-saas-store-dto" target="1.8" />
       <module name="holder-saas-store-item" target="1.8" />
+      <module name="holder-saas-store-kds" target="1.8" />
       <module name="holder-saas-store-organization" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -36,6 +38,7 @@
       <module name="frameworks-slf4j-starter" options="-parameters" />
       <module name="holder-saas-store-dto" options="-parameters" />
       <module name="holder-saas-store-item" options="-parameters" />
+      <module name="holder-saas-store-kds" options="-parameters" />
       <module name="holder-saas-store-organization" options="-parameters" />
     </option>
   </component>
