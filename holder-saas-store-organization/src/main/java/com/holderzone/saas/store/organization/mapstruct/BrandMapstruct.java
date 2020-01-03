@@ -1,6 +1,6 @@
 package com.holderzone.saas.store.organization.mapstruct;
 
-import com.holderzone.holdersaasstoredto.dto.organization.BrandDTO;
+import com.holderzone.holder.saas.store.dto.dto.organization.BrandDTO;
 import com.holderzone.saas.store.organization.domain.BrandDO;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;

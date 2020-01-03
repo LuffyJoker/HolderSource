@@ -2,7 +2,7 @@ package com.holderzone.saas.store.organization.service.rpc;
 
 import com.holderzone.framework.util.JacksonUtils;
 import com.holderzone.framework.util.ThrowableUtils;
-import com.holderzone.holdersaasstoredto.dto.item.ItemSingleDTO;
+import com.holderzone.holder.saas.store.dto.dto.item.ItemSingleDTO;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FeignClient;

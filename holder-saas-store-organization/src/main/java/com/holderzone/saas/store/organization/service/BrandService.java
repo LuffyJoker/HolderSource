@@ -1,8 +1,8 @@
 package com.holderzone.saas.store.organization.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.holderzone.holdersaasstoredto.dto.organization.BrandDTO;
-import com.holderzone.holdersaasstoredto.dto.organization.QueryBrandDTO;
+import com.holderzone.holder.saas.store.dto.dto.organization.BrandDTO;
+import com.holderzone.holder.saas.store.dto.dto.organization.QueryBrandDTO;
 import com.holderzone.saas.store.organization.domain.BrandDO;
 
 import java.util.List;
