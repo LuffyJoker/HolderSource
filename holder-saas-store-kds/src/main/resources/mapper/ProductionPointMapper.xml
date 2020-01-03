@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.holderzone.holdersaasstorekds.mapper.ProductionPointMapper">
+
+    <resultMap id="PointItemMap" type="com.holderzone.holdersaasstorekds.entity.read.KitchenItemReadDO">
+        <result column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="store_guid" jdbcType="VARCHAR" property="storeGuid"/>
+        <result column="device_id" jdbcType="VARCHAR" property="deviceId"/>
+        <result column="point_name" jdbcType="VARCHAR" property="pointName"/>
+        <result column="item_count" jdbcType="INTEGER" property="itemCount"/>
+    </resultMap>
+
+    <select id="queryPrdPointWithItemCount" resultMap="PointItemMap"
+            parameterType="com.holderzone.holdersaasstorekds.entity.domain.ProductionPointDO">
+        select
+        p.guid, p.store_guid, p.device_id, p.name as point_name, count(distinct pi.item_guid) as item_count
+        from hsk_production_point p
+        left join hsk_point_item pi on pi.point_guid = p.guid
+        where p.store_guid = #{storeGuid} and p.device_id = #{deviceId}
+        group by p.guid, p.store_guid, p.device_id, p.name
+    </select>
+
+</mapper>
