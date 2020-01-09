@@ -6,14 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="holder-saas-store-item" />
         <module name="framework-feign-starter" />
-        <module name="framework-rocketmq-starter" />
         <module name="framework-sdk" />
+        <module name="framework-rocketmq-starter" />
+        <module name="holder-saas-store-organization" />
         <module name="framework-sdk-starter" />
         <module name="frameworks-slf4j-starter" />
         <module name="holder-saas-store-dto" />
-        <module name="holder-saas-store-item" />
-        <module name="holder-saas-store-organization" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
