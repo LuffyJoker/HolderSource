@@ -3,9 +3,14 @@ package com.holderzone.holder.saas.store.item.listener;
 import com.holderzone.framework.exception.runtime.BusinessException;
 import com.holderzone.framework.feign.starter.util.UserContextUtils;
 import com.holderzone.framework.rocketmq.starter.anno.RocketListenerHandler;
+import com.holderzone.framework.rocketmq.starter.common.AbstractRocketMqConsumer;
 import com.holderzone.framework.rocketmq.starter.constants.RocketMqTopic;
+import com.holderzone.framework.util.EnterpriseIdentifier;
 import com.holderzone.holder.saas.store.dto.dto.item.ItemSingleDTO;
+import com.holderzone.holder.saas.store.dto.dto.organization.StoreDTO;
+import com.holderzone.holder.saas.store.dto.enums.MchntTypeEnum;
 import com.holderzone.holder.saas.store.item.constant.MqConstant;
+import com.holderzone.holder.saas.store.item.service.IDefaultDataService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +43,7 @@ public class InitStoreDefaultDataListener extends AbstractRocketMqConsumer<Rocke
 
     @Override
     public boolean consumeMsg(StoreDTO storeDTO, MessageExt messageExt) {
-        if(Objects.equals(storeDTO.getMchntTypeCode(),MchntTypeEnum.CATERING.getCode())) {
+        if(Objects.equals(storeDTO.getMchntTypeCode(), MchntTypeEnum.CATERING.getCode())) {
             UserContextUtils.put(messageExt.getProperty(MqConstant.DOWNSTREAM_CONTEXT));
             //将Enterprise存入threadLocal中
             EnterpriseIdentifier.setEnterpriseGuid(UserContextUtils.getEnterpriseGuid());
