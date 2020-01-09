@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.holderzone.framework.exception.runtime.BusinessException;
+import com.holderzone.holdersaasstoredto.dto.kds.DeviceDstConfDTO;
+import com.holderzone.holdersaasstoredto.dto.kds.DevicePrdConfDTO;
 import com.holderzone.holdersaasstoredto.dto.kds.req.DeviceCreateReqDTO;
+import com.holderzone.holdersaasstoredto.dto.kds.req.DeviceQueryReqDTO;
 import com.holderzone.holdersaasstoredto.dto.kds.resp.DeviceStatusRespDTO;
 import com.holderzone.holdersaasstorekds.entity.domain.DeviceConfigDO;
 import com.holderzone.holdersaasstorekds.entity.enums.PointModeEnum;
@@ -69,6 +72,42 @@ public class DeviceConfigServiceImpl extends ServiceImpl<DeviceConfigMapper, Dev
             }
         }
         return query(new DeviceQueryReqDTO(storeGuid, deviceId));
+    }
+
+    @Override
+    public DeviceStatusRespDTO query(DeviceQueryReqDTO deviceQueryReqDTO) {
+        DeviceConfigDO deviceConfigInSql = queryDeviceByGuid(deviceQueryReqDTO.getStoreGuid(), deviceQueryReqDTO.getDeviceId());
+        DeviceStatusRespDTO deviceStatusRespDTO = deviceConfigMapstruct.toStatusResp(deviceConfigInSql);
+        switch (PointModeEnum.ofMode(deviceConfigInSql.getPointMode())) {
+            case PRODUCTION: {
+                DevicePrdConfDTO devicePrdConfDTO = deviceConfigMapstruct.toPrdConfResp(deviceConfigInSql);
+                deviceStatusRespDTO.setDevicePrdConfDTO(devicePrdConfDTO);
+                break;
+            }
+            case DISTRIBUTE: {
+                DeviceDstConfDTO deviceDstConfDTO = deviceConfigMapstruct.toDstConfResp(deviceConfigInSql);
+                deviceStatusRespDTO.setDeviceDstConfDTO(deviceDstConfDTO);
+                break;
+            }
+            default:
+                break;
+        }
+        return deviceStatusRespDTO;
+    }
+
+    @Override
+    public void initialize(DeviceQueryReqDTO deviceQueryReqDTO) {
+
+    }
+
+    @Override
+    public DeviceConfigDO queryDeviceByGuid(String storeGuid, String deviceId) {
+        DeviceConfigDO deviceConfigInSql = getOne(deviceConfigWrapper(storeGuid, deviceId));
+        if (deviceConfigInSql == null) {
+            log.error("根据 storeGuid:{}，deviceId: {} 未找到设备", storeGuid, deviceId);
+            throw new BusinessException("设备不存在");
+        }
+        return deviceConfigInSql;
     }
 
 
