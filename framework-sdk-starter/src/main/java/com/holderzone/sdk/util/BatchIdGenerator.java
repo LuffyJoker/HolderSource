@@ -1,7 +1,6 @@
 package com.holderzone.sdk.util;
 
 import com.google.common.collect.Lists;
-import com.holderzone.framework.exception.ParamException;
 import com.holderzone.framework.exception.runtime.ParameterException;
 import org.springframework.dao.NonTransientDataAccessException;
 import org.springframework.data.redis.connection.ReturnType;

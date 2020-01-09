@@ -9,11 +9,14 @@
         <module name="holder-saas-store-item" />
         <module name="framework-feign-starter" />
         <module name="framework-sdk" />
+        <module name="holder-saas-store-design-pattern" />
         <module name="framework-rocketmq-starter" />
         <module name="holder-saas-store-organization" />
         <module name="framework-sdk-starter" />
+        <module name="spring-boot-study-test" />
         <module name="frameworks-slf4j-starter" />
         <module name="holder-saas-store-dto" />
+        <module name="holder-saas-store-kds" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -22,9 +25,12 @@
       <module name="framework-sdk" target="1.8" />
       <module name="framework-sdk-starter" target="1.8" />
       <module name="frameworks-slf4j-starter" target="1.8" />
+      <module name="holder-saas-store-design-pattern" target="1.8" />
       <module name="holder-saas-store-dto" target="1.8" />
       <module name="holder-saas-store-item" target="1.8" />
+      <module name="holder-saas-store-kds" target="1.8" />
       <module name="holder-saas-store-organization" target="1.8" />
+      <module name="spring-boot-study-test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -34,9 +40,12 @@
       <module name="framework-sdk" options="-parameters" />
       <module name="framework-sdk-starter" options="-parameters" />
       <module name="frameworks-slf4j-starter" options="-parameters" />
+      <module name="holder-saas-store-design-pattern" options="-parameters" />
       <module name="holder-saas-store-dto" options="-parameters" />
       <module name="holder-saas-store-item" options="-parameters" />
+      <module name="holder-saas-store-kds" options="-parameters" />
       <module name="holder-saas-store-organization" options="-parameters" />
+      <module name="spring-boot-study-test" options="-parameters" />
     </option>
   </component>
 </project>
