@@ -2,7 +2,7 @@ package com.holderzone.holdersaasstorekds.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.holderzone.holdersaasstoredto.dto.kds.req.DeviceCreateReqDTO;
-import com.holderzone.holdersaasstoredto.dto.kds.req.DeviceQueryReqDTO;
+import com.holderzone.holder.saas.store.dto.dto.kds.req.DeviceQueryReqDTO;
 import com.holderzone.holdersaasstoredto.dto.kds.resp.DeviceStatusRespDTO;
 import com.holderzone.holdersaasstorekds.entity.domain.DeviceConfigDO;
 

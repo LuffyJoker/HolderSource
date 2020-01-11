@@ -7,7 +7,7 @@ import com.holderzone.framework.exception.runtime.BusinessException;
 import com.holderzone.holdersaasstoredto.dto.kds.DeviceDstConfDTO;
 import com.holderzone.holdersaasstoredto.dto.kds.DevicePrdConfDTO;
 import com.holderzone.holdersaasstoredto.dto.kds.req.DeviceCreateReqDTO;
-import com.holderzone.holdersaasstoredto.dto.kds.req.DeviceQueryReqDTO;
+import com.holderzone.holder.saas.store.dto.dto.kds.req.DeviceQueryReqDTO;
 import com.holderzone.holdersaasstoredto.dto.kds.resp.DeviceStatusRespDTO;
 import com.holderzone.holdersaasstorekds.entity.domain.DeviceConfigDO;
 import com.holderzone.holdersaasstorekds.entity.enums.PointModeEnum;

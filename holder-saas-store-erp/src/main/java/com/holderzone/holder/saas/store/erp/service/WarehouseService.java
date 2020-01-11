@@ -1,6 +1,6 @@
 package com.holderzone.holder.saas.store.erp.service;
 
-import com.holderzone.holdersaasstoredto.dto.erp.WarehouseReqDTO;
+import com.holderzone.holder.saas.store.dto.dto.erp.WarehouseReqDTO;
 
 public interface WarehouseService {
 

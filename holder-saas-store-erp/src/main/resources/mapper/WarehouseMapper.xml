@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.holderzone.holder.saas.store.erp.dao.WarehouseMapper">
+
+    <select id="checkCodeRepeat" resultType="java.lang.Integer">
+        select
+        count(*)
+        from hse_warehouse
+        where code = #{code}
+    </select>
+
+    <select id="checkNameRepeat" resultType="java.lang.Integer">
+        select
+        count(*)
+        from hse_warehouse
+        where
+        `name` = #{name} and deleted = 0
+        <if test="guid != null and guid != ''">
+            and guid &lt;> #{guid}
+        </if>
+    </select>
+
+    <insert id="createWarehouse" parameterType="com.holderzone.erp.entity.domain.WarehouseDO">
+        insert into hse_warehouse
+        (
+        <trim suffixOverrides=",">
+            `guid`,
+            `name`,
+            `type`,
+            <if test="enterpriseGuid != null and enterpriseGuid != ''">
+                `enterprise_guid`,
+            </if>
+            <if test="code != null and code != ''">
+                `code`,
+            </if>
+            <if test="addr != null and addr != ''">
+                `addr`,
+            </if>
+            <if test="pic != null and pic != ''">
+                `pic`,
+            </if>
+            <if test="tel != null and tel != ''">
+                `tel`,
+            </if>
+            <if test="remark != null and remark != ''">
+                `remark`,
+            </if>
+            <if test="foreignKey != null and foreignKey != ''">
+                `foreign_key`,
+            </if>
+        </trim>
+        ) values
+        (
+        <trim suffixOverrides=",">
+            #{guid},
+            #{name},
+            #{type},
+            <if test="enterpriseGuid != null and enterpriseGuid != ''">
+                #{enterpriseGuid},
+            </if>
+            <if test="code != null and code != ''">
+                #{code},
+            </if>
+            <if test="addr != null and addr != ''">
+                #{addr},
+            </if>
+            <if test="pic != null and pic != ''">
+                #{pic},
+            </if>
+            <if test="tel != null and tel != ''">
+                #{tel},
+            </if>
+            <if test="remark != null and remark != ''">
+                #{remark},
+            </if>
+            <if test="foreignKey != null and foreignKey != ''">
+                #{foreignKey},
+            </if>
+        </trim>
+        )
+    </insert>
+
+
+    <select id="getMaximumCode" resultType="java.lang.String">
+        select
+        `code`
+        from hse_warehouse
+        order by gmt_create desc
+        limit 1
+    </select>
+
+</mapper>

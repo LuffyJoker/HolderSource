@@ -8,7 +8,7 @@
         <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.holderzone</groupId>
+    <groupId>com.peng</groupId>
     <artifactId>frameworks-slf4j-starter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>frameworks-slf4j-starter</name>

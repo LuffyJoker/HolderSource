@@ -9,6 +9,7 @@
         <module name="holder-saas-store-item" />
         <module name="framework-feign-starter" />
         <module name="framework-sdk" />
+        <module name="holder-saas-store-erp" />
         <module name="holder-saas-store-design-pattern" />
         <module name="framework-rocketmq-starter" />
         <module name="holder-saas-store-organization" />
@@ -27,6 +28,7 @@
       <module name="frameworks-slf4j-starter" target="1.8" />
       <module name="holder-saas-store-design-pattern" target="1.8" />
       <module name="holder-saas-store-dto" target="1.8" />
+      <module name="holder-saas-store-erp" target="1.8" />
       <module name="holder-saas-store-item" target="1.8" />
       <module name="holder-saas-store-kds" target="1.8" />
       <module name="holder-saas-store-organization" target="1.8" />
@@ -42,6 +44,7 @@
       <module name="frameworks-slf4j-starter" options="-parameters" />
       <module name="holder-saas-store-design-pattern" options="-parameters" />
       <module name="holder-saas-store-dto" options="-parameters" />
+      <module name="holder-saas-store-erp" options="-parameters" />
       <module name="holder-saas-store-item" options="-parameters" />
       <module name="holder-saas-store-kds" options="-parameters" />
       <module name="holder-saas-store-organization" options="-parameters" />

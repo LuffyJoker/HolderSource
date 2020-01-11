@@ -8,7 +8,7 @@
         <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.holderzone</groupId>
+    <groupId>com.peng</groupId>
     <artifactId>holder-saas-store-item</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>holder-saas-store-item</name>
@@ -42,7 +42,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.holderzone</groupId>
+            <groupId>com.peng</groupId>
             <artifactId>framework-feign-starter</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
@@ -54,13 +54,13 @@
         </dependency>
 
         <dependency>
-            <groupId>com.holderzone</groupId>
+            <groupId>com.peng</groupId>
             <artifactId>holder-saas-store-dto</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
-            <groupId>com.holderzone</groupId>
+            <groupId>com.peng</groupId>
             <artifactId>framework-rocketmq-starter</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
