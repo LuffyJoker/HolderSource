@@ -35,6 +35,11 @@
 <!--                </exclusion>-->
 <!--            </exclusions>-->
         </dependency>
+        <dependency>
+            <groupId>com.peng</groupId>
+            <artifactId>holder-saas-store-dto</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
